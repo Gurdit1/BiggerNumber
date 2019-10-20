@@ -55,9 +55,23 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static boolean check(int n1, int n2){
-        return false;
-
+    public static boolean check(int n1, int n2, int choice){
+        if(choice==0){
+            if(n1>n2){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            if(n1<n2){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     }
 
     public static int ranGen(){
@@ -71,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         return number;
     }
 
-    public static void displayProcessNum(android.widget.TextView nx, android.widget.TextView b1, android.widget.TextView b2, int choice){
+    public static void displayProcessNum(android.widget.TextView nx, android.widget.TextView b1, android.widget.TextView b2, int choice, android.widget.TextView c){
         //Disables the guess buttons
         b1.setClickable(false);
         b2.setClickable(false);
@@ -86,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
         b1.setText(Integer.toString(n1));
         b2.setText(Integer.toString(n2));
 
+        //Determines if guess is correct
+        if(check(n1,n2,choice)==true){
+            c.setText("Congratulations");
+        }
+        else{
+            c.setText("Wrong");
+        }
+
+
         nx.setClickable(true);
 
 
@@ -97,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
         android.widget.TextView b1 = this.findViewById(R.id.button);
         android.widget.TextView b2 = this.findViewById(R.id.button2);
         android.widget.TextView nx = this.findViewById(R.id.next);
-        displayProcessNum(nx, b1, b2, 0);
+        android.widget.TextView c = this.findViewById(R.id.congrats);
+        displayProcessNum(nx, b1, b2, 0, c);
 
 
 
@@ -107,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
         android.widget.TextView b1 = this.findViewById(R.id.button);
         android.widget.TextView b2 = this.findViewById(R.id.button2);
         android.widget.TextView nx = this.findViewById(R.id.next);
-        displayProcessNum(nx, b1, b2, 1);
+        android.widget.TextView c = this.findViewById(R.id.congrats);
+        displayProcessNum(nx, b1, b2, 1, c);
 
     }
 
@@ -115,10 +140,12 @@ public class MainActivity extends AppCompatActivity {
         android.widget.TextView b1 = this.findViewById(R.id.button);
         android.widget.TextView b2 = this.findViewById(R.id.button2);
         android.widget.TextView nx = this.findViewById(R.id.next);
+        android.widget.TextView c = this.findViewById(R.id.congrats);
 
         nx.setClickable(false);
         b1.setText("Guess");
         b2.setText("Guess");
+        c.setText("");
 
         b1.setClickable(true);
         b2.setClickable(true);
