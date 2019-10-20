@@ -170,4 +170,26 @@ public class MainActivity extends AppCompatActivity {
         b1.setClickable(true);
         b2.setClickable(true);
     }
+
+    public void onClickRestart(View view){
+        android.widget.TextView b1 = this.findViewById(R.id.button);
+        android.widget.TextView b2 = this.findViewById(R.id.button2);
+        android.widget.TextView nx = this.findViewById(R.id.next);
+        android.widget.TextView c = this.findViewById(R.id.congrats);
+        android.widget.TextView sc = this.findViewById(R.id.score);
+        android.widget.TextView lv = this.findViewById(R.id.lives);
+        android.widget.TextView end = this.findViewById(R.id.end);
+
+        b1.setText("Guess");
+        b2.setText("Guess");
+        nx.setText("");
+        c.setText("");
+        sc.setText("0");
+        lv.setText("5");
+        end.setVisibility(View.INVISIBLE);
+
+        b1.setClickable(true);
+        b2.setClickable(true);
+        nx.setClickable(false);
+    }
 }
