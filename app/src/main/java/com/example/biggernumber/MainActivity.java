@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
         return number;
     }
 
-    public static void displayProcessNum(android.widget.TextView nx, android.widget.TextView b1, android.widget.TextView b2, int choice, android.widget.TextView c){
+    public static void displayProcessNum(android.widget.TextView nx, android.widget.TextView b1, android.widget.TextView b2, int choice, android.widget.TextView c, android.widget.TextView sc){
         //Disables the guess buttons
         b1.setClickable(false);
         b2.setClickable(false);
 
 
         //Generates the numbers and displays them
-        int n1 = 0, n2 = 0;
+        int n1 = 0, n2 = 0, score = Integer.parseInt(String.valueOf(sc.getText()));
         while(n1==n2){ //Randomly generates the numbers and checks if they are equal
             n1 = ranGen();
             n2 = ranGen();
@@ -103,13 +103,15 @@ public class MainActivity extends AppCompatActivity {
         //Determines if guess is correct
         if(check(n1,n2,choice)==true){
             c.setText("Congratulations");
+            score += 1;
         }
         else{
             c.setText("Wrong");
         }
 
-
+        sc.setText(Integer.toString(score));
         nx.setClickable(true);
+        nx.setText("Next");
 
 
     }
@@ -121,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
         android.widget.TextView b2 = this.findViewById(R.id.button2);
         android.widget.TextView nx = this.findViewById(R.id.next);
         android.widget.TextView c = this.findViewById(R.id.congrats);
-        displayProcessNum(nx, b1, b2, 0, c);
+        android.widget.TextView sc = this.findViewById(R.id.score);
+        displayProcessNum(nx, b1, b2, 0, c, sc);
 
 
 
@@ -132,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
         android.widget.TextView b2 = this.findViewById(R.id.button2);
         android.widget.TextView nx = this.findViewById(R.id.next);
         android.widget.TextView c = this.findViewById(R.id.congrats);
-        displayProcessNum(nx, b1, b2, 1, c);
+        android.widget.TextView sc = this.findViewById(R.id.score);
+        displayProcessNum(nx, b1, b2, 1, c, sc);
 
     }
 
@@ -143,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         android.widget.TextView c = this.findViewById(R.id.congrats);
 
         nx.setClickable(false);
+        nx.setText("");
+
         b1.setText("Guess");
         b2.setText("Guess");
         c.setText("");
